@@ -1,6 +1,6 @@
 cask "aegisub-japan7" do
-  version "c06b0c34"
-  sha256 "c06b0c3407dff21f12f01403ad7dac7375ba858394b5a8c693dad24dd99e7dae"
+  version "320961bf"
+  sha256 "320961bfbc58e44febc3be2695cf25f0553a9660d6866851c1b109264433a238"
 
   url "https://hikari.butaishoujo.moe/b/#{version}/Aegisub-3.2.2.dmg.zip",
       verified: "hikari.butaishoujo.moe/"
