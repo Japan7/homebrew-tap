@@ -1,6 +1,6 @@
 cask "syncplay-japan7" do
-  version "2571ed3f"
-  sha256 "2571ed3fce065c93710315dae56d5ceef949c7ef2516d1db8144763c36d38d87"
+  version "bf708060"
+  sha256 "bf70806045c1fefd4518dd8c1fade929a27a4d05cf15c0e52c1512a38b444a29"
 
   url "https://hikari.butaishoujo.moe/b/#{version}/Syncplay_1.7.2.dmg.zip",
       verified: "hikari.butaishoujo.moe/"
