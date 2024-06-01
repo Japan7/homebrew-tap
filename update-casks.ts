@@ -1,4 +1,5 @@
 #!/usr/bin/env -S deno run -A
+// horrible script because i'm too lazy to update casks manually
 import $ from "https://deno.land/x/dax@0.39.1/mod.ts";
 
 const HIKARI_UPLOAD = Deno.env.get("HIKARI_UPLOAD")!;
@@ -7,6 +8,11 @@ interface Cask {
   name: string;
   repo: string;
   filter: string;
+  lines: {
+    version: number;
+    sha256: number;
+    url: number;
+  };
 }
 
 interface Artifact {
@@ -17,13 +23,33 @@ interface Artifact {
 const CASKS: Cask[] = [
   {
     name: "aegisub-japan7",
-    repo: "odrling/Aegisub",
-    filter: "macOS",
+    repo: "NextFire/Aegisub",
+    filter: "macOS (arm64)",
+    lines: {
+      version: 3,
+      sha256: 4,
+      url: 11,
+    },
+  },
+  {
+    name: "aegisub-japan7",
+    repo: "NextFire/Aegisub",
+    filter: "macOS (amd64)",
+    lines: {
+      version: 7,
+      sha256: 8,
+      url: 11,
+    },
   },
   {
     name: "syncplay-japan7",
     repo: "odrling/syncplay",
     filter: ".dmg",
+    lines: {
+      version: 2,
+      sha256: 3,
+      url: 5,
+    },
   },
 ];
 
@@ -76,8 +102,15 @@ async function updateFile(
   props: { version: string; sha256: string; url: string }
 ) {
   let content = await Deno.readTextFile(`Casks/${cask.name}.rb`);
+  const lines = content.split("\n");
+  // :puke:
   for (const [key, value] of Object.entries(props)) {
-    content = content.replace(new RegExp(`${key} ".*"`), `${key} "${value}"`);
+    const nline = cask.lines[key as keyof Cask["lines"]] - 1;
+    lines[nline] = lines[nline].replace(
+      new RegExp(`${key} ".*"`),
+      `${key} "${value}"`
+    );
   }
+  content = lines.join("\n");
   await Deno.writeTextFile(`Casks/${cask.name}.rb`, content);
 }
