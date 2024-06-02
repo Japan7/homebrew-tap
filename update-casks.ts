@@ -23,7 +23,7 @@ interface Artifact {
 const CASKS: Cask[] = [
   {
     name: "aegisub-japan7",
-    repo: "NextFire/Aegisub",
+    repo: "odrling/Aegisub",
     filter: "macOS (arm64)",
     lines: {
       version: 3,
@@ -33,7 +33,7 @@ const CASKS: Cask[] = [
   },
   {
     name: "aegisub-japan7",
-    repo: "NextFire/Aegisub",
+    repo: "odrling/Aegisub",
     filter: "macOS (amd64)",
     lines: {
       version: 7,
